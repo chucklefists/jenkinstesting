@@ -4,6 +4,7 @@ pipeline {
         image 'mcr.microsoft.com/azure-cli'
         label 'ubuntu-slave'
         args  '-v /tmp:/tmp'
+        args  '--user root --privileged'
         } 
    }
 
