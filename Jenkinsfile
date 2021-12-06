@@ -1,7 +1,7 @@
 pipeline {
    agent { 
         docker { 
-        image 'maven:3.8.1-adoptopenjdk-11'
+        image 'mcr.microsoft.com/azure-cli'
         label 'ubuntu-slave'
         args  '-v /tmp:/tmp'
         } 
