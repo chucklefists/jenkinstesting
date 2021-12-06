@@ -14,11 +14,12 @@ pipeline {
    stages {
       stage('Build') {
         steps {
-          echo 'Building...'
+          checkout([$class: 'GitSCM', branches: [[name: '*/main']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: 'env.WORKSPACE/az_cli']], userRemoteConfigs: [[url: 'https://github.com/chucklefists/simple_az_cli.git']]])
           echo "Running ${env.BUILD_ID} ${env.BUILD_DISPLAY_NAME} on ${env.NODE_NAME} and JOB ${env.JOB_NAME}"
           withCredentials([azureServicePrincipal('azuseast')]) {
               sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID'
               sh 'az account list'
+              sh 'pwd'
               }
         }
    }
