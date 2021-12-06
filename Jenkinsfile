@@ -7,7 +7,10 @@ pipeline {
         args  '--user root --privileged'
         } 
    }
-
+   parameters {
+        string(name: 'RGNAME', defaultValue: 'Jenkins_Test', description: 'Resource Group Name')
+        string(name: 'LOCATION', defaultValue: 'EastUS', description: 'Azure Region')
+  }
    stages {
       stage('Build') {
         steps {
