@@ -16,7 +16,7 @@ pipeline {
    }
    stage('Test') {
      steps {
-        echo 'Testing...'
+        checkout([$class: 'GitSCM', branches: [[name: '*/master']], extensions: [[$class: 'RelativeTargetDirectory', relativeTargetDir: '/home/jenkins/ansible']], userRemoteConfigs: [[url: 'https://github.com/ansible/ansible-examples.git']]])
      }
    }
    stage('Deploy') {
