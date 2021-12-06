@@ -19,7 +19,8 @@ pipeline {
           withCredentials([azureServicePrincipal('azuseast')]) {
               sh 'az login --service-principal -u $AZURE_CLIENT_ID -p $AZURE_CLIENT_SECRET --tenant $AZURE_TENANT_ID'
               sh 'az account list'
-              sh 'pwd'
+              sh 'chmod +x env.WORKSPACE/az_cli/resource-group.sh'
+              sh './env.WORKSPACE/az_cli/resource-group.sh'
               }
         }
    }
